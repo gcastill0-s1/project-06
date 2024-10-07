@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Syntax Highlighter</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js"></script>
+</head>
+
+<body>
+    <section id="pqhighlighter-border">
+        <div class="pqhighlighter" id="pqhighlighter">
+            <code class="highlightedCode" id="highlightedCode">
+event.category = 'windows_event_logs' 
+| filter ( winEventLog.id = 4738 OR winEventLog.id = 5136 OR winEventLog.id = 4769 ) 
+| group event_count = count() by winEventLog.data.event.eventData.targetDomainName, 
+    winEventLog.data.event.eventData.targetUserName, 
+    timestamp = timebucket("10m"), 
+    winEventLog.id = string(winEventLog.id)
+| lookup Description from wel_ad_compromises.csv by winEventLog.id
+            </code>
+        </div>
+    </section>
+
+    <script src="js/highlighter.js"></script>
+</body>
+
+</html>

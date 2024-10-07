@@ -1,0 +1,70 @@
+body {
+    font-family: 'Courier New', Courier, monospace;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+section {
+    background-color: transparent;
+    width: 85%;
+    max-width: 85%;
+    padding: 5px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pqhighlighter {
+    background-color: #FFFFFF;
+    padding: 20px;
+    box-shadow: 0 5px 5px #82828288;
+    border: 0.5px #2b2b2b66 solid;
+    border-radius: 5px;
+    color: lightgray;
+    color: #3b3b3b;
+    width: fit-content;
+}
+
+.highlightedCode {
+    white-space: pre-wrap;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 14px;
+    line-height: 2;
+    font-weight: 700;
+}
+
+/* 
+        .replace(aggregationPattern,   '<span class="aggregation">$&</span>')
+        .replace(arrayPattern,         '<span class="array">$&</span>')
+        .replace(expressionPattern,    '<span class="expression">$&</span>')
+        .replace(commentPattern,       '<span class="comment">$&</span>')
+        .replace(geolocationPattern,   '<span class="geolocation">$&</span>')
+        .replace(groupingPattern,      '<span class="grouping">$&</span>')
+        .replace(jsonPattern,          '<span class="json">$&</span>')
+        .replace(logicPattern,         '<span class="logic">$&</span>')
+        .replace(networkingPattern,    '<span class="network">$&</span>')
+        .replace(numberPattern,        '<span class="numeric">$&</span>')
+        .replace(stringPattern,        '<span class="stringFunc">$&</span>')
+        .replace(timePattern,          '<span class="time">$&</span>')
+        .replace(generalStringPattern, '<span class="string">$&</span>')
+        .replace(numberLiteralPattern, '<span class="number">$&</span>');
+*/
+
+
+/* Add styles for each category */
+.aggregation { color: darkorange; }
+.array { color: darkorange; }
+.comment { color: gray; }
+.expression { color: #569cd6; }
+.geolocation { color: darkviolet; }
+.operator { color: #d69d85; }
+.logic { color: #569cd6; }
+.grouping { color: #4ec9b0; }
+.numeric { color: #b8d7a3; }
+.number { color: #8a9d36; }
+.string { color: green; }
+.time { color: #4ec9b0; }
