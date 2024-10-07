@@ -1,6 +1,7 @@
 const code = document.getElementById("highlightedCode");
-const highlighted = highlightSyntax(code.innerHTML);
-code.innerHTML = highlighted;
+const fragments = getFragments(code.innerHTML);
+const joinedFragments = joinFragments(fragments);
+code.innerHTML = joinedFragments;
 
 // Function to escape HTML characters
 function escapeHtml(unsafe) {
@@ -10,6 +11,41 @@ function escapeHtml(unsafe) {
         .replace(/>/g, "&gt;")
         .replace(/"/g, "&quot;")
         .replace(/'/g, "&#039;");
+}
+
+// Function to join the fragments while ensuring no space before commas, semicolons, or between a function and the next operator
+function joinFragments(fragments) {
+    return fragments.reduce((accumulator, currentFragment, index) => {
+        // Get the next fragment
+        const nextFragment = fragments[index + 1] || "";
+
+        // Check if the current fragment is a function (contains class "function")
+        const isFunction = currentFragment.includes('class="function"');
+        // Check if the next fragment is an operator (contains class "operator")
+        const isNextOperator = nextFragment.includes('class="operator"');
+
+        // Add a space only if the current fragment does not begin with a comma or semicolon
+        // and it's not a function followed by an operator
+        if (currentFragment.startsWith(",") || currentFragment.startsWith(";") || (isFunction && isNextOperator)) {
+            return accumulator + currentFragment;  // Don't add a space before commas, semicolons, or between function and operator
+        } else {
+            return accumulator + currentFragment + " " ;  // Add a space before all other fragments
+        }
+    }, "");
+}
+
+function getFragments(codeText) {
+
+    const fragments = codeText.match(/[\w.,]+|['"`].*?['"`]|[=<>!]+|\(|\)|\||;|\s{4,}|\r?\n/g);
+
+    let highlightedFragments = [];
+
+    fragments.forEach((fragment) => {
+        let highlighted = highlightSyntax(fragment);
+        highlightedFragments.push(highlighted);
+    });
+
+    return highlightedFragments;
 }
 
 function highlightSyntax(code) {
@@ -26,15 +62,21 @@ function highlightSyntax(code) {
   const commentPattern = /(\/\/[^\n]*|\/\*[\s\S]*?\*\/)/g; // Comments
 
   // Apply the highlighting
-  return code
-    // .replace(stringPattern, '<span class="string">$&</span>')
-    .replace(operatorPattern, '<span class="operator">$&</span>')
-    .replace(commentPattern, '<span class="comment">$&</span>')
-    .replace(expressionPattern, '<span class="expression">$&</span>')
-    .replace(functionPattern, '<span class="function">$&</span>')
-    .replace(numberPattern, '<span class="number">$&</span>');
-}
 
-const fileName = "pqhighlighter.png";
-const section = document.getElementById("pqhighlighter-border");
-const options = { backgroundColor: null };
+      // Apply the correct highlight class based on the fragment type
+      if (commentPattern.test(code)) {
+        return `<span class="comment">${code}</span>`;
+    } else if (stringPattern.test(code)) {
+        return `<span class="string">${code}</span>`;
+    } else if (operatorPattern.test(code)) {
+        return `<span class="operator">${code}</span>`;
+    } else if (expressionPattern.test(code)) {
+        return `<span class="expression">${code}</span>`;
+    } else if (functionPattern.test(code)) {
+        return `<span class="function">${code}</span>`;
+    } else if (numberPattern.test(code)) {
+        return `<span class="number">${code}</span>`;
+    }
+
+  return code;
+}
