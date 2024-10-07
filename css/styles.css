@@ -1,3 +1,27 @@
+:root {
+    --brand-color-purple: #6100FF;
+    --brand-color-medium-purple: #4500B6;
+    --brand-color-dark-purple: #0E0024;
+    --brand-color-gold: gold;
+    --brand-color-white: #fff;
+    --brand-color-black: #000;
+    --brand-color-fuchsia: #F40F61;
+
+    /* Grayscale */
+
+    --brand-color-atmosphere: #EFF0FA;
+    --brand-color-cloud: #DFE1EF;
+    --brand-color-dust: #B8BACC;
+    --brand-color-smoke: #9193A8;
+    --brand-color-slate: #76788f;
+
+    --brand-color-iron: #5A5C76;
+    --brand-color-ore: #3f4259;
+    --brand-color-meteor: #26273B;
+    --brand-color-obsidian: #1A1B2E;
+    --brand-color-vanta: #0B0C1B;
+}
+
 body {
     font-family: 'Courier New', Courier, monospace;
     height: 100vh;
@@ -25,7 +49,7 @@ section {
     border: 0.5px #2b2b2b66 solid;
     border-radius: 5px;
     color: lightgray;
-    color: #3b3b3b;
+    color: var(--brand-color-ore);
     width: fit-content;
 }
 
@@ -37,34 +61,10 @@ section {
     font-weight: 700;
 }
 
-/* 
-        .replace(aggregationPattern,   '<span class="aggregation">$&</span>')
-        .replace(arrayPattern,         '<span class="array">$&</span>')
-        .replace(expressionPattern,    '<span class="expression">$&</span>')
-        .replace(commentPattern,       '<span class="comment">$&</span>')
-        .replace(geolocationPattern,   '<span class="geolocation">$&</span>')
-        .replace(groupingPattern,      '<span class="grouping">$&</span>')
-        .replace(jsonPattern,          '<span class="json">$&</span>')
-        .replace(logicPattern,         '<span class="logic">$&</span>')
-        .replace(networkingPattern,    '<span class="network">$&</span>')
-        .replace(numberPattern,        '<span class="numeric">$&</span>')
-        .replace(stringPattern,        '<span class="stringFunc">$&</span>')
-        .replace(timePattern,          '<span class="time">$&</span>')
-        .replace(generalStringPattern, '<span class="string">$&</span>')
-        .replace(numberLiteralPattern, '<span class="number">$&</span>');
-*/
-
-
-/* Add styles for each category */
-.aggregation { color: darkorange; }
-.array { color: darkorange; }
-.comment { color: gray; }
-.expression { color: #569cd6; }
-.geolocation { color: darkviolet; }
-.operator { color: #d69d85; }
-.logic { color: #569cd6; }
-.grouping { color: #4ec9b0; }
-.numeric { color: #b8d7a3; }
-.number { color: #8a9d36; }
-.string { color: green; }
-.time { color: #4ec9b0; }
+/* Style each category */
+.operator { color: #D14D8F; }     /* Operators */
+.expression { color: #2C71C1 }     /* Expressions */
+.function { color: #268E8E; } /* Functions */
+.string { color: #268E8E; }        /* Strings */
+.number { color: #2CC171; }          /* Numbers */
+.comment { color: gray; }        /* Comments */
