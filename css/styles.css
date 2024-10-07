@@ -64,7 +64,7 @@ section {
 /* Style each category */
 .operator { color: #D14D8F; }       /* Operators */
 .expression { color: #2C71C1 }      /* Expressions */
-.function { color: #268E8E; }       /* Functions */
+.function { color: #D14D8F; }       /* Functions */
 .string { color: #268E8E; }         /* Strings */
-.number { color: #2CC171; }         /* Numbers */
+.number { color: #268E8E; }         /* Numbers */
 .comment { color: gray; }           /* Comments */

@@ -11,15 +11,12 @@
 <body>
     <section id="pqhighlighter-border">
         <div class="pqhighlighter" id="pqhighlighter">
-            <code class="highlightedCode" id="highlightedCode">
-event.category = 'windows_event_logs' 
-| filter ( winEventLog.id = 4738 OR winEventLog.id = 5136 OR winEventLog.id = 4769 ) 
-| group event_count = count() by winEventLog.data.event.eventData.targetDomainName, 
-    winEventLog.data.event.eventData.targetUserName, 
-    timestamp = timebucket("10m"), 
-    winEventLog.id = string(winEventLog.id)
-| lookup Description from wel_ad_compromises.csv by winEventLog.id
-            </code>
+<code class="highlightedCode" id="highlightedCode">
+dataSource.name='Extrahop Reveal(x) 360'
+| filter clientIsExternal == true
+| filter isEncrypted == false
+| group count = count() by clientAddr, serverAddr, timestamp = timebucket("10m")            
+</code>
         </div>
     </section>
 

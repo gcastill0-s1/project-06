@@ -20,14 +20,14 @@ function joinFragments(fragments) {
         const nextFragment = fragments[index + 1] || "";
 
         // Check if the current fragment is a function (contains class "function")
-        const isFunction = currentFragment.includes('class="function"');
+        const isOperator = currentFragment.includes('class="operator"') ;
         // Check if the next fragment is an operator (contains class "operator")
         const isNextOperator = nextFragment.includes('class="operator"');
 
         // Add a space only if the current fragment does not begin with a comma or semicolon
         // and it's not a function followed by an operator
-        if (currentFragment.startsWith(",") || currentFragment.startsWith(";") || (isFunction && isNextOperator)) {
-            return accumulator + currentFragment;  // Don't add a space before commas, semicolons, or between function and operator
+        if (currentFragment.startsWith(",") || currentFragment.startsWith(";") || ((isOperator) && isNextOperator)) {
+            return accumulator + currentFragment;  // Don't add a space between operators
         } else {
             return accumulator + currentFragment + " " ;  // Add a space before all other fragments
         }
