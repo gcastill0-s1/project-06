@@ -6,21 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JavaScript Syntax Highlighter</title>
     <link rel="stylesheet" href="css/styles.css">
+    <script src="js/highlighter.js" /defer></script>
 </head>
 
 <body>
     <section id="pqhighlighter-border">
-        <div class="pqhighlighter" id="pqhighlighter">
-<code class="highlightedCode" id="highlightedCode">
-dataSource.name='Extrahop Reveal(x) 360'
-| filter clientIsExternal == true
-| filter isEncrypted == false
-| group count = count() by clientAddr, serverAddr, timestamp = timebucket("10m")            
-</code>
+        <div id="cardContainer" class="cardContainer">
         </div>
     </section>
 
-    <script src="js/highlighter.js"></script>
 </body>
 
 </html>

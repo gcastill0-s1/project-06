@@ -24,7 +24,7 @@
 
 body {
     font-family: 'Courier New', Courier, monospace;
-    height: 100vh;
+    /* height: 100vh; */
     width: 100vw;
     display: flex;
     align-items: center;
@@ -40,6 +40,12 @@ section {
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 10px;
+}
+
+.cardContainer {
+    display: grid;
+    gap: 10px;
 }
 
 .pqhighlighter {
@@ -48,9 +54,7 @@ section {
     box-shadow: 0 5px 5px #82828288;
     border: 0.5px #2b2b2b66 solid;
     border-radius: 5px;
-    color: lightgray;
     color: var(--brand-color-ore);
-    width: fit-content;
 }
 
 .highlightedCode {
