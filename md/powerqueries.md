@@ -62,7 +62,7 @@ dataSource.name='Extrahop Reveal(x) 360'
 ```sql
 dataSource.name='Extrahop Reveal(x) 360'
 | filter isEncrypted == false
-| filter isSQLi == true or isXSS == true
+| filter isSQLi == true OR isXSS == true
 | columns host, contentType, uri, query, xss
 ```
 
@@ -75,5 +75,25 @@ dataSource.name='Extrahop Reveal(x) 360' qname=* dataSource.category = 'security
 | let c = trim(a, "."), d = c + "." + b
 | let domain = lower(d), qname = lower(qname)
 | group events = count() by domain, timestamp = timebucket("1h")
-| transpose domain
+| sort - events
+```
+
+```sql
+dataSource.name='Extrahop Reveal(x) 360' 
+| filter certificateNotAfter=* certificateNotBefore=*
+| let certificate_NotAfter = strftime(certificateNotAfter * 1000000000)
+| let certificate_NotBefore = strftime(certificateNotBefore * 1000000000)
+| let days_toExpire = ((certificateNotAfter * 1000000000) - now()) / 1000000000 / 86400
+| group count() by serverAddr, certificate_NotAfter, days_toExpire
+| filter days_toExpire >= 0
+| sort days_toExpire
+```
+
+```sql
+dataSource.name = 'Extrahop Reveal(x) 360' serverPort = 53 txId != 1
+| let txId = string(txId) 
+| group count = count(), 
+  answers = array_agg(answers) by clientAddr, serverAddr, qname, txId 
+| columns clientAddr, serverAddr, qname, answers, count, txId
+| let sequence = ( count == 1 ) ? " > " : " < > "
 ```
